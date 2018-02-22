@@ -18,6 +18,9 @@ $app = new Slim\App([
 
         'views' => [
             'cache' => getenv('VIEW_CACHE_DISABLED') === 'true' ? false : __DIR__ . '/../storage/views'
+        ],
+        'zmq' => [
+            'host' => getenv('ZMQ_HOST')
         ]
     ],
 ]);

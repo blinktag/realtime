@@ -12,8 +12,10 @@ class HomeController extends Controller
 {
     public function index(Request $request, Response $response, $args)
     {
-        return $this->c->view->render($response, 'home/index.twig', [
-            'appName' => $this->c->settings['app']['name'],
-        ]);
+        $context = new \ZMQContext();
+        $socket = $context->getSocket(\ZMQ::SOCKET_PUSH);
+        $socket->connect('tcp://127.0.0.1:5555');
+
+        $socket->send('abc');
     }
 }
