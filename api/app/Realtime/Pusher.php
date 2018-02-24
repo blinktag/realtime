@@ -27,6 +27,6 @@ class Pusher extends Client
 
     public function transmit($payload)
     {
-        dump($payload);
+        $this->getSession()->publish('chat', ['abc']);
     }
 }

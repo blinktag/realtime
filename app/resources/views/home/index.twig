@@ -3,3 +3,20 @@
 {% block content %}
     Hello from {{ appName }}!
 {% endblock %}
+
+{% block scripts %}
+    <script>
+        let connection = new autobahn.Connection({
+            url: 'ws://127.0.0.1:7474',
+            realm: 'default'
+        });
+
+        connection.onopen = (session) => {
+            session.subcribe('chat', (payload) => {
+                console.log('Received payload: ' , payload[0]);
+            });
+        }
+
+        connection.open();
+    </script>
+{% endblock %}
